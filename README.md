@@ -10,3 +10,4 @@ Reference document for Solis registers (might be Solis firmware dependent):
 **Website coming Soon:**
 https://thediybattery.com
 
+## Documentation Coming Soon :)
