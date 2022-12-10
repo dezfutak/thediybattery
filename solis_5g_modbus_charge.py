@@ -11,6 +11,7 @@ import minimalmodbus
 import time
 import paho.mqtt.publish as publish
 
+# /dev/ttyUSB0 implies you're connecting to the Solis inverter via a USB to modbus adapter
 instrument = minimalmodbus.Instrument('/dev/ttyUSB0', 1, debug = False)
 instrument.serial.baudrate = 9600
 # This probably doesn't need setting but I was getting timeout failures 
@@ -21,9 +22,12 @@ instrument.serial.timeout = 2
 
 # MQTT
 # mqtt                = os.environ['USE_MQTT']
-#mqtt_client         = "solisinverter"
+#mqqt_client sets the main topic, which will be referenced in the Home Assistant YAML file (you can choose anything here - but it
+#will need to be mirrored in the HA YAML file 
 mqtt_client         = "homeassistant"
 mqtt_server         = "localhost"
+
+#Create an mqtt user & password from within HA - you'll need the MQTT server addon in place on your HA instance
 mqtt_username       = "USERNAME"
 mqtt_password       = "PASSWORD"
 debug               = False
@@ -84,6 +88,7 @@ InverterStatusDict = {
     8213: 'Battery Alarm'
 }
 
+#The main reading/writing function for communicating via the Solis modbus registers
 def get_status():
     # Inverter Temp
     inverter_temp = instrument.read_register(33093, functioncode=4, number_of_decimals=1, signed=False)
@@ -147,6 +152,7 @@ def get_status():
     # Grid export power yesterday (kWh)
     house_load_yesterday = instrument.read_register(33180, functioncode=4, number_of_decimals=1, signed=False)
     
+    #Not sure Grid Power is particularly meaningful, so it might be removed in future versions of this script
     #Grid Power
     gridvoltage = (instrument.read_register(33128, functioncode=4, signed=False))/10
     gridcurrent = (instrument.read_register(33129, functioncode=4, signed=False))/100
@@ -180,6 +186,9 @@ def get_status():
     # Battery storage mode, 33=self use, 35=timed charge
     storage_mode = instrument.read_register(43110, functioncode=3, signed=False)
     
+    #The absolute paths referenced below will probably change in future versions of this script
+    #The following filesystem calls read the current charge start times, which are generated via 
+    #a bash script
     with open("/home/pi/code/battery/chargehourstart", "r") as file:
         chargehourstart = file.read()
         chargehourstart = int(chargehourstart.rstrip('\n'))
@@ -198,6 +207,8 @@ def get_status():
     
     #instrument.write_registers(43143, [3, 44, 7, 34, 0, 0, 0, 0])    
     
+    #if writetoinverter is set to 1 (99.99% of the time it isn't to increase the longevity of the inverter's flash memory)
+    #then send the calculated charge start times to the inverter for overnight charging (on cheap rate)
     if writetoinverter == 1:
         #Start Hour
         instrument.write_register(43143, functioncode=6, signed=False, value=chargehourstart)
@@ -243,7 +254,7 @@ def get_status():
 
 
 
-
+    #Main MQTT comms section
     # Push to MQTT
     msgs = []
 
@@ -353,4 +364,6 @@ while True:
         time.sleep(30)
     if debug:
         print("-------------------------------")
+    #You can set the sleep time to be less aggressive if you prefer - I just like seeing near real-time data being displayed
+    #in Home Assistant
     time.sleep(1)
