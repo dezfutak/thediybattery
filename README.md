@@ -23,3 +23,12 @@ https://thediybattery.com
  - The Home Assistant instance is being run via supervised, which is considered to be the "Advanced installation" method; there's a detailed guide here showing how this is done:
   - https://peyanski.com/how-to-install-home-assistant-supervised-official-way/#Home_Assistant_Supervised_method
  - by doing this more convoluted HA installation, you get the flexibility of having a "full bells & whistles" HA instance, whilst also being able to run your mini PC/Raspberry Pi etc for other things too, including the solis_5g_modbus_charge.py script. I prefer this approach because sometimes a HA update can break things, so I prefer the code that communicates with the inverter to independent from HA (ie, greater robustness/reliability), especially when it comes to writing to the inverter for overnight charging.  
+
+
+## To-do's ##
+ - Upload:
+   - wrapper bash scripts that call the solis python scripts
+   - Additional python & bash scripts that calculate charge start time, dependent on Solcast data
+ - Documentation:
+   - Install How-to Guide
+   - Hardware resources
