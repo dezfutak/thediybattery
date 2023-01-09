@@ -7,7 +7,8 @@ Forked from:
 Other Related Solis Modbus projects:
   - https://github.com/fboundy/ha_solis_modbus
   - https://github.com/hultenvp/solis-sensor (this relies on API calls to SolisCloud, which are a bit hit & miss)
-  - https://github.com/sijones/VE.DirectMQTTCANBUS (I'm using a Victron SmartShunt to measure the Battery's SOC. NOTE: this isn't a Solis modbus project per se!)
+  - https://github.com/sijones/VE.DirectMQTTCANBUS
+    (I'm using a Victron SmartShunt to measure the Battery's SOC. NOTE: this isn't a Solis modbus project per se!)
 
 
 Reference document for Solis registers (might be Solis firmware dependent):
