@@ -5,6 +5,7 @@ Forked from:
  - https://gist.github.com/madbobmcjim/5b8d42edce81893cd3ee47f9dfc8cbfd
 
 Other Related Solis Modbus projects:
+  - https://diysolarforum.com/threads/diy-battery-via-smart-shunt-to-inverter-integration-solis-etc.44750/
   - https://github.com/fboundy/ha_solis_modbus
   - https://github.com/hultenvp/solis-sensor (this relies on API calls to SolisCloud, which are a bit hit & miss)
   - https://github.com/sijones/VE.DirectMQTTCANBUS
