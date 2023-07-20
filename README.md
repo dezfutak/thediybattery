@@ -4,6 +4,7 @@ JK BMS Monitoring via:
 
 Automation via:
  - https://github.com/jevburchell/Solis-Modbus-Auto-Charging-using-Solax
+ - (see Jev's video here FFI: https://youtube.com/playlist?list=PLES-CQ5Zh2-mHbdFneLnt5znVa6quPR6I )
 
 Solis <-> Battery Closed-Loop Integration via:
  - https://github.com/sijones/VE.DirectMQTTCANBUS
