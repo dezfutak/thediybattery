@@ -1,3 +1,4 @@
+###NO LONGER IN USE (keeping here in case useful to anyone _not_ wanting to use Home Assistant)
 ##
 # Based off Mark Gardiner's script here: 
 # https://gist.github.com/markgdev/ce2dbf9002385cbe5a35b81985f9c84a
