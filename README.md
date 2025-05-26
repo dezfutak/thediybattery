@@ -7,7 +7,7 @@ Automation via:
  - (see Jev's video here FFI: https://youtube.com/playlist?list=PLES-CQ5Zh2-mHbdFneLnt5znVa6quPR6I )
 
 Solis <-> Battery Closed-Loop Integration via:
- - https://github.com/sijones/VE.DirectMQTTCANBUS
+ - https://github.com/sijones/DiyBatteryBMS
 
 Solis <-> Home Assistant Integration via:
  - https://github.com/wills106/homeassistant-solax-modbus
